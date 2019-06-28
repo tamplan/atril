@@ -1,0 +1,977 @@
+<html>
+<head>
+<title>rootdir - scan-build results</title>
+<link type="text/css" rel="stylesheet" href="scanview.css"/>
+<script src="sorttable.js"></script>
+<script language='javascript' type="text/javascript">
+function SetDisplay(RowClass, DisplayVal)
+{
+  var Rows = document.getElementsByTagName("tr");
+  for ( var i = 0 ; i < Rows.length; ++i ) {
+    if (Rows[i].className == RowClass) {
+      Rows[i].style.display = DisplayVal;
+    }
+  }
+}
+
+function CopyCheckedStateToCheckButtons(SummaryCheckButton) {
+  var Inputs = document.getElementsByTagName("input");
+  for ( var i = 0 ; i < Inputs.length; ++i ) {
+    if (Inputs[i].type == "checkbox") {
+      if(Inputs[i] != SummaryCheckButton) {
+        Inputs[i].checked = SummaryCheckButton.checked;
+        Inputs[i].onclick();
+      }
+    }
+  }
+}
+
+function returnObjById( id ) {
+    if (document.getElementById)
+        var returnVar = document.getElementById(id);
+    else if (document.all)
+        var returnVar = document.all[id];
+    else if (document.layers)
+        var returnVar = document.layers[id];
+    return returnVar;
+}
+
+var NumUnchecked = 0;
+
+function ToggleDisplay(CheckButton, ClassName) {
+  if (CheckButton.checked) {
+    SetDisplay(ClassName, "");
+    if (--NumUnchecked == 0) {
+      returnObjById("AllBugsCheck").checked = true;
+    }
+  }
+  else {
+    SetDisplay(ClassName, "none");
+    NumUnchecked++;
+    returnObjById("AllBugsCheck").checked = false;
+  }
+}
+</script>
+<!-- SUMMARYENDHEAD -->
+</head>
+<body>
+<h1>rootdir - scan-build results</h1>
+
+<table>
+<tr><th>User:</th><td>root@cab33f9717d1</td></tr>
+<tr><th>Working Directory:</th><td>/rootdir</td></tr>
+<tr><th>Command Line:</th><td>make -j 2</td></tr>
+<tr><th>Clang Version:</th><td>clang version 8.0.0 (Fedora 8.0.0-1.fc30)
+</td></tr>
+<tr><th>Date:</th><td>Tue Jun 25 13:01:10 2019</td></tr>
+</table>
+<h2>Bug Summary</h2><table>
+<thead><tr><td>Bug Type</td><td>Quantity</td><td class="sorttable_nosort">Display?</td></tr></thead>
+<tr style="font-weight:bold"><td class="SUMM_DESC">All Bugs</td><td class="Q">287</td><td><center><input type="checkbox" id="AllBugsCheck" onClick="CopyCheckedStateToCheckButtons(this);" checked/></center></td></tr>
+<tr><th>API</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Argument with 'nonnull' attribute passed null</td><td class="Q">10</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_api_argument_with_nonnull_attribute_passed_null');" checked/></center></td></tr>
+<tr><th>Dead store</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Dead assignment</td><td class="Q">31</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_dead_store_dead_assignment');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Dead increment</td><td class="Q">6</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_dead_store_dead_increment');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Dead initialization</td><td class="Q">10</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_dead_store_dead_initialization');" checked/></center></td></tr>
+<tr><th>Logic error</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Assigned value is garbage or undefined</td><td class="Q">4</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_assigned_value_is_garbage_or_undefined');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Called function pointer is null (null dereference)</td><td class="Q">2</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_called_function_pointer_is_null_null_dereference_');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Cast from non-struct type to struct type</td><td class="Q">6</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_cast_from_non-struct_type_to_struct_type');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Cast region with wrong size</td><td class="Q">2</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_cast_region_with_wrong_size');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Dereference of null pointer</td><td class="Q">88</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_dereference_of_null_pointer');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Identical conditions</td><td class="Q">18</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_identical_conditions');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Out-of-bound access</td><td class="Q">20</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_out-of-bound_access');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Potential unintended use of sizeof() on pointer type</td><td class="Q">2</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_potential_unintended_use_of_sizeof_on_pointer_type');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Result of operation is garbage or undefined</td><td class="Q">14</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_result_of_operation_is_garbage_or_undefined');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Return of pointer value outside of expected range</td><td class="Q">10</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_return_of_pointer_value_outside_of_expected_range');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Uninitialized argument value</td><td class="Q">4</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_uninitialized_argument_value');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Use fixed address</td><td class="Q">6</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_use_fixed_address');" checked/></center></td></tr>
+<tr><th>Memory error</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Memory leak</td><td class="Q">8</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_memory_error_memory_leak');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Use of zero allocated</td><td class="Q">6</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_memory_error_use_of_zero_allocated');" checked/></center></td></tr>
+<tr><th>Security</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Potential insecure memory buffer bounds restriction in call 'strcat'</td><td class="Q">16</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcat_');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td class="Q">14</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_');" checked/></center></td></tr>
+<tr><th>Unix API</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Allocator sizeof operand mismatch</td><td class="Q">10</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_unix_api_allocator_sizeof_operand_mismatch');" checked/></center></td></tr>
+</table>
+<h2>Reports</h2>
+
+<table class="sortable" style="table-layout:automatic">
+<thead><tr>
+  <td>Bug Group</td>
+  <td class="sorttable_sorted">Bug Type<span id="sorttable_sortfwdind">&nbsp;&#x25BE;</span></td>
+  <td>File</td>
+  <td>Function/Method</td>
+  <td class="Q">Line</td>
+  <td class="Q">Path Length</td>
+  <td class="sorttable_nosort"></td>
+  <!-- REPORTBUGCOL -->
+</tr></thead>
+<tbody>
+<tr class="bt_unix_api_allocator_sizeof_operand_mismatch"><td class="DESC">Unix API</td><td class="DESC">Allocator sizeof operand mismatch</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">synctex_edit_query</td><td class="Q">3722</td><td class="Q">1</td><td><a href="report-a66acd.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a66acd.html" -->
+</tr>
+<tr class="bt_unix_api_allocator_sizeof_operand_mismatch"><td class="DESC">Unix API</td><td class="DESC">Allocator sizeof operand mismatch</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">synctex_display_query</td><td class="Q">3454</td><td class="Q">1</td><td><a href="report-1c4055.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1c4055.html" -->
+</tr>
+<tr class="bt_unix_api_allocator_sizeof_operand_mismatch"><td class="DESC">Unix API</td><td class="DESC">Allocator sizeof operand mismatch</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">synctex_edit_query</td><td class="Q">3697</td><td class="Q">1</td><td><a href="report-02b002.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-02b002.html" -->
+</tr>
+<tr class="bt_unix_api_allocator_sizeof_operand_mismatch"><td class="DESC">Unix API</td><td class="DESC">Allocator sizeof operand mismatch</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">synctex_display_query</td><td class="Q">3454</td><td class="Q">1</td><td><a href="report-97fcc7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-97fcc7.html" -->
+</tr>
+<tr class="bt_unix_api_allocator_sizeof_operand_mismatch"><td class="DESC">Unix API</td><td class="DESC">Allocator sizeof operand mismatch</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">synctex_edit_query</td><td class="Q">3697</td><td class="Q">1</td><td><a href="report-661719.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-661719.html" -->
+</tr>
+<tr class="bt_unix_api_allocator_sizeof_operand_mismatch"><td class="DESC">Unix API</td><td class="DESC">Allocator sizeof operand mismatch</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">synctex_edit_query</td><td class="Q">3722</td><td class="Q">1</td><td><a href="report-f10dee.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f10dee.html" -->
+</tr>
+<tr class="bt_unix_api_allocator_sizeof_operand_mismatch"><td class="DESC">Unix API</td><td class="DESC">Allocator sizeof operand mismatch</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">synctex_display_query</td><td class="Q">3489</td><td class="Q">1</td><td><a href="report-74f6a7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-74f6a7.html" -->
+</tr>
+<tr class="bt_unix_api_allocator_sizeof_operand_mismatch"><td class="DESC">Unix API</td><td class="DESC">Allocator sizeof operand mismatch</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">synctex_display_query</td><td class="Q">3489</td><td class="Q">1</td><td><a href="report-c04bbf.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c04bbf.html" -->
+</tr>
+<tr class="bt_unix_api_allocator_sizeof_operand_mismatch"><td class="DESC">Unix API</td><td class="DESC">Allocator sizeof operand mismatch</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">synctex_display_query</td><td class="Q">3472</td><td class="Q">1</td><td><a href="report-06dce7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-06dce7.html" -->
+</tr>
+<tr class="bt_unix_api_allocator_sizeof_operand_mismatch"><td class="DESC">Unix API</td><td class="DESC">Allocator sizeof operand mismatch</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">synctex_display_query</td><td class="Q">3472</td><td class="Q">1</td><td><a href="report-630673.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-630673.html" -->
+</tr>
+<tr class="bt_api_argument_with_nonnull_attribute_passed_null"><td class="DESC">API</td><td class="DESC">Argument with 'nonnull' attribute passed null</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">bitmap_convert_msb8</td><td class="Q">187</td><td class="Q">12</td><td><a href="report-73f8f7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-73f8f7.html" -->
+</tr>
+<tr class="bt_api_argument_with_nonnull_attribute_passed_null"><td class="DESC">API</td><td class="DESC">Argument with 'nonnull' attribute passed null</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">bitmap_copy</td><td class="Q">201</td><td class="Q">5</td><td><a href="report-828afd.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-828afd.html" -->
+</tr>
+<tr class="bt_api_argument_with_nonnull_attribute_passed_null"><td class="DESC">API</td><td class="DESC">Argument with 'nonnull' attribute passed null</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">mdvi_build_path_from_cwd</td><td class="Q">339</td><td class="Q">8</td><td><a href="report-20f98a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-20f98a.html" -->
+</tr>
+<tr class="bt_api_argument_with_nonnull_attribute_passed_null"><td class="DESC">API</td><td class="DESC">Argument with 'nonnull' attribute passed null</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">bitmap_convert_lsb8</td><td class="Q">147</td><td class="Q">10</td><td><a href="report-809f8c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-809f8c.html" -->
+</tr>
+<tr class="bt_api_argument_with_nonnull_attribute_passed_null"><td class="DESC">API</td><td class="DESC">Argument with 'nonnull' attribute passed null</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">bitmap_copy</td><td class="Q">201</td><td class="Q">5</td><td><a href="report-eb4f8b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-eb4f8b.html" -->
+</tr>
+<tr class="bt_api_argument_with_nonnull_attribute_passed_null"><td class="DESC">API</td><td class="DESC">Argument with 'nonnull' attribute passed null</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">bitmap_convert_msb8</td><td class="Q">187</td><td class="Q">12</td><td><a href="report-836f09.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-836f09.html" -->
+</tr>
+<tr class="bt_api_argument_with_nonnull_attribute_passed_null"><td class="DESC">API</td><td class="DESC">Argument with 'nonnull' attribute passed null</td><td>backend/dvi/mdvi-lib/common.c</td><td class="DESC">buff_add</td><td class="Q">142</td><td class="Q">7</td><td><a href="report-5f1e61.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-5f1e61.html" -->
+</tr>
+<tr class="bt_api_argument_with_nonnull_attribute_passed_null"><td class="DESC">API</td><td class="DESC">Argument with 'nonnull' attribute passed null</td><td>backend/dvi/mdvi-lib/common.c</td><td class="DESC">buff_add</td><td class="Q">142</td><td class="Q">7</td><td><a href="report-785fd0.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-785fd0.html" -->
+</tr>
+<tr class="bt_api_argument_with_nonnull_attribute_passed_null"><td class="DESC">API</td><td class="DESC">Argument with 'nonnull' attribute passed null</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">bitmap_convert_lsb8</td><td class="Q">147</td><td class="Q">10</td><td><a href="report-cc3f35.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-cc3f35.html" -->
+</tr>
+<tr class="bt_api_argument_with_nonnull_attribute_passed_null"><td class="DESC">API</td><td class="DESC">Argument with 'nonnull' attribute passed null</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">mdvi_build_path_from_cwd</td><td class="Q">339</td><td class="Q">8</td><td><a href="report-0faa84.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-0faa84.html" -->
+</tr>
+<tr class="bt_logic_error_assigned_value_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Assigned value is garbage or undefined</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">synctex_display_query</td><td class="Q">3525</td><td class="Q">21</td><td><a href="report-95281e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-95281e.html" -->
+</tr>
+<tr class="bt_logic_error_assigned_value_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Assigned value is garbage or undefined</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">synctex_display_query</td><td class="Q">3512</td><td class="Q">21</td><td><a href="report-26b2cb.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-26b2cb.html" -->
+</tr>
+<tr class="bt_logic_error_assigned_value_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Assigned value is garbage or undefined</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">synctex_display_query</td><td class="Q">3525</td><td class="Q">21</td><td><a href="report-d63169.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-d63169.html" -->
+</tr>
+<tr class="bt_logic_error_assigned_value_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Assigned value is garbage or undefined</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">synctex_display_query</td><td class="Q">3512</td><td class="Q">21</td><td><a href="report-656d57.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-656d57.html" -->
+</tr>
+<tr class="bt_logic_error_called_function_pointer_is_null_null_dereference_"><td class="DESC">Logic error</td><td class="DESC">Called function pointer is null (null dereference)</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_scan_content</td><td class="Q">2653</td><td class="Q">29</td><td><a href="report-07fcaf.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-07fcaf.html" -->
+</tr>
+<tr class="bt_logic_error_called_function_pointer_is_null_null_dereference_"><td class="DESC">Logic error</td><td class="DESC">Called function pointer is null (null dereference)</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_scan_content</td><td class="Q">2653</td><td class="Q">29</td><td><a href="report-74e19d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-74e19d.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>cut-n-paste/smclient/eggsmclient-xsmp.c</td><td class="DESC">ptrarray_prop</td><td class="Q">1188</td><td class="Q">1</td><td><a href="report-4fddaa.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-4fddaa.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>shell/ev-bookmarks.c</td><td class="DESC">ev_bookmarks_constructed</td><td class="Q">131</td><td class="Q">1</td><td><a href="report-a155eb.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a155eb.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>cut-n-paste/smclient/eggsmclient-xsmp.c</td><td class="DESC">array_prop</td><td class="Q">1155</td><td class="Q">1</td><td><a href="report-4b76b7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-4b76b7.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>shell/ev-bookmarks.c</td><td class="DESC">ev_bookmarks_save</td><td class="Q">204</td><td class="Q">1</td><td><a href="report-ec9cc8.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ec9cc8.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>cut-n-paste/smclient/eggsmclient-xsmp.c</td><td class="DESC">array_prop</td><td class="Q">1155</td><td class="Q">1</td><td><a href="report-14ea2b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-14ea2b.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>cut-n-paste/smclient/eggsmclient-xsmp.c</td><td class="DESC">ptrarray_prop</td><td class="Q">1188</td><td class="Q">1</td><td><a href="report-55e22f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-55e22f.html" -->
+</tr>
+<tr class="bt_logic_error_cast_region_with_wrong_size"><td class="DESC">Logic error</td><td class="DESC">Cast region with wrong size</td><td>backend/epub/epub-document.c</td><td class="DESC">setup_document_content_list</td><td class="Q">1024</td><td class="Q">18</td><td><a href="report-e75e02.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e75e02.html" -->
+</tr>
+<tr class="bt_logic_error_cast_region_with_wrong_size"><td class="DESC">Logic error</td><td class="DESC">Cast region with wrong size</td><td>backend/epub/epub-document.c</td><td class="DESC">setup_document_content_list</td><td class="Q">1024</td><td class="Q">18</td><td><a href="report-094d1c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-094d1c.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm_load_file</td><td class="Q">510</td><td class="Q">1</td><td><a href="report-14b9e6.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-14b9e6.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/djvu/djvu-links.c</td><td class="DESC">get_djvu_hyperlink_mapping</td><td class="Q">329</td><td class="Q">1</td><td><a href="report-dcc809.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-dcc809.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm_load_file</td><td class="Q">453</td><td class="Q">1</td><td><a href="report-a03d79.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a03d79.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm1_load_file</td><td class="Q">411</td><td class="Q">1</td><td><a href="report-652406.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-652406.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>cut-n-paste/zoom-control/ephy-zoom-control.c</td><td class="DESC">ephy_zoom_control_class_init</td><td class="Q">277</td><td class="Q">1</td><td><a href="report-d5b5bf.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-d5b5bf.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/pagesel.c</td><td class="DESC">mdvi_parse_range</td><td class="Q">61</td><td class="Q">1</td><td><a href="report-2db1f7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2db1f7.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm_load_file</td><td class="Q">510</td><td class="Q">1</td><td><a href="report-35bacc.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-35bacc.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/epub/minizip/unzip.c</td><td class="DESC">unzOpenCurrentFile3</td><td class="Q">1538</td><td class="Q">1</td><td><a href="report-b75433.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b75433.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>cut-n-paste/toolbar-editor/egg-toolbars-model.c</td><td class="DESC">egg_toolbars_model_to_xml</td><td class="Q">103</td><td class="Q">1</td><td><a href="report-fc7513.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-fc7513.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/djvu/djvu-links.c</td><td class="DESC">get_djvu_hyperlink_mapping</td><td class="Q">329</td><td class="Q">1</td><td><a href="report-67b31a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-67b31a.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm1_load_file</td><td class="Q">411</td><td class="Q">1</td><td><a href="report-ba966b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ba966b.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">unit2pix_factor</td><td class="Q">365</td><td class="Q">1</td><td><a href="report-5c76da.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-5c76da.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/epub/minizip/unzip.c</td><td class="DESC">unzOpenCurrentFile3</td><td class="Q">1538</td><td class="Q">1</td><td><a href="report-c3297e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c3297e.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>cut-n-paste/toolbar-editor/egg-toolbar-editor.c</td><td class="DESC">update_editor_sheet</td><td class="Q">623</td><td class="Q">1</td><td><a href="report-c90aaa.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c90aaa.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/pagesel.c</td><td class="DESC">mdvi_parse_range</td><td class="Q">59</td><td class="Q">1</td><td><a href="report-967925.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-967925.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/pdf/ev-poppler.cc</td><td class="DESC">pdf_document_annotations_add_annotation</td><td class="Q">3009</td><td class="Q">1</td><td><a href="report-2ed821.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2ed821.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm_load_file</td><td class="Q">453</td><td class="Q">1</td><td><a href="report-67acad.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-67acad.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm1_load_file</td><td class="Q">336</td><td class="Q">1</td><td><a href="report-eb89de.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-eb89de.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>cut-n-paste/zoom-control/ephy-zoom-control.c</td><td class="DESC">ephy_zoom_control_class_init</td><td class="Q">277</td><td class="Q">1</td><td><a href="report-112fb2.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-112fb2.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/pagesel.c</td><td class="DESC">mdvi_parse_range</td><td class="Q">61</td><td class="Q">1</td><td><a href="report-14cd34.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-14cd34.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>cut-n-paste/toolbar-editor/egg-toolbars-model.c</td><td class="DESC">egg_toolbars_model_to_xml</td><td class="Q">103</td><td class="Q">1</td><td><a href="report-e2df04.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e2df04.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/pagesel.c</td><td class="DESC">mdvi_parse_range</td><td class="Q">60</td><td class="Q">1</td><td><a href="report-eea2d4.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-eea2d4.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>cut-n-paste/toolbar-editor/egg-toolbar-editor.c</td><td class="DESC">update_editor_sheet</td><td class="Q">623</td><td class="Q">1</td><td><a href="report-76532f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-76532f.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/pagesel.c</td><td class="DESC">mdvi_parse_range</td><td class="Q">60</td><td class="Q">1</td><td><a href="report-109361.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-109361.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm1_load_file</td><td class="Q">336</td><td class="Q">1</td><td><a href="report-992a5c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-992a5c.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>shell/ev-window.c</td><td class="DESC">setup_document_from_metadata</td><td class="Q">1370</td><td class="Q">1</td><td><a href="report-9a778d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9a778d.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/pdf/ev-poppler.cc</td><td class="DESC">pdf_document_annotations_add_annotation</td><td class="Q">3009</td><td class="Q">1</td><td><a href="report-de9d23.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-de9d23.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">bitmap_print</td><td class="Q">253</td><td class="Q">1</td><td><a href="report-512c30.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-512c30.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">bitmap_print</td><td class="Q">253</td><td class="Q">1</td><td><a href="report-c645e1.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c645e1.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">unit2pix_factor</td><td class="Q">365</td><td class="Q">1</td><td><a href="report-ceb8e9.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ceb8e9.html" -->
+</tr>
+<tr class="bt_dead_store_dead_assignment"><td class="DESC">Dead store</td><td class="DESC">Dead assignment</td><td>backend/dvi/mdvi-lib/pagesel.c</td><td class="DESC">mdvi_parse_range</td><td class="Q">59</td><td class="Q">1</td><td><a href="report-692006.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-692006.html" -->
+</tr>
+<tr class="bt_dead_store_dead_increment"><td class="DESC">Dead store</td><td class="DESC">Dead increment</td><td>backend/epub/minizip/unzip.c</td><td class="DESC">unz64local_GetCurrentFileInfoInternal</td><td class="Q">1105</td><td class="Q">1</td><td><a href="report-a293b6.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a293b6.html" -->
+</tr>
+<tr class="bt_dead_store_dead_increment"><td class="DESC">Dead store</td><td class="DESC">Dead increment</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">tfm_load_file</td><td class="Q">250</td><td class="Q">1</td><td><a href="report-d28abb.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-d28abb.html" -->
+</tr>
+<tr class="bt_dead_store_dead_increment"><td class="DESC">Dead store</td><td class="DESC">Dead increment</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">tfm_load_file</td><td class="Q">250</td><td class="Q">1</td><td><a href="report-ae770e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ae770e.html" -->
+</tr>
+<tr class="bt_dead_store_dead_increment"><td class="DESC">Dead store</td><td class="DESC">Dead increment</td><td>backend/epub/minizip/unzip.c</td><td class="DESC">unz64local_GetCurrentFileInfoInternal</td><td class="Q">1102</td><td class="Q">1</td><td><a href="report-0e180e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-0e180e.html" -->
+</tr>
+<tr class="bt_dead_store_dead_increment"><td class="DESC">Dead store</td><td class="DESC">Dead increment</td><td>backend/epub/minizip/unzip.c</td><td class="DESC">unz64local_GetCurrentFileInfoInternal</td><td class="Q">1102</td><td class="Q">1</td><td><a href="report-dcb4b9.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-dcb4b9.html" -->
+</tr>
+<tr class="bt_dead_store_dead_increment"><td class="DESC">Dead store</td><td class="DESC">Dead increment</td><td>backend/epub/minizip/unzip.c</td><td class="DESC">unz64local_GetCurrentFileInfoInternal</td><td class="Q">1105</td><td class="Q">1</td><td><a href="report-be828d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-be828d.html" -->
+</tr>
+<tr class="bt_dead_store_dead_initialization"><td class="DESC">Dead store</td><td class="DESC">Dead initialization</td><td>backend/epub/epub-document.c</td><td class="DESC">epub_document_add_mathJax</td><td class="Q">1660</td><td class="Q">1</td><td><a href="report-b431e4.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b431e4.html" -->
+</tr>
+<tr class="bt_dead_store_dead_initialization"><td class="DESC">Dead store</td><td class="DESC">Dead initialization</td><td>backend/epub/epub-document.c</td><td class="DESC">add_night_sheet</td><td class="Q">1511</td><td class="Q">1</td><td><a href="report-b1d062.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b1d062.html" -->
+</tr>
+<tr class="bt_dead_store_dead_initialization"><td class="DESC">Dead store</td><td class="DESC">Dead initialization</td><td>backend/epub/epub-document.c</td><td class="DESC">add_night_sheet</td><td class="Q">1510</td><td class="Q">1</td><td><a href="report-b25ff6.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b25ff6.html" -->
+</tr>
+<tr class="bt_dead_store_dead_initialization"><td class="DESC">Dead store</td><td class="DESC">Dead initialization</td><td>backend/epub/epub-document.c</td><td class="DESC">add_night_sheet</td><td class="Q">1511</td><td class="Q">1</td><td><a href="report-71230f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-71230f.html" -->
+</tr>
+<tr class="bt_dead_store_dead_initialization"><td class="DESC">Dead store</td><td class="DESC">Dead initialization</td><td>backend/epub/epub-document.c</td><td class="DESC">epub_document_add_mathJax</td><td class="Q">1660</td><td class="Q">1</td><td><a href="report-6785ba.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-6785ba.html" -->
+</tr>
+<tr class="bt_dead_store_dead_initialization"><td class="DESC">Dead store</td><td class="DESC">Dead initialization</td><td>backend/epub/epub-document.c</td><td class="DESC">epub_document_get_info</td><td class="Q">1333</td><td class="Q">1</td><td><a href="report-c1e42c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c1e42c.html" -->
+</tr>
+<tr class="bt_dead_store_dead_initialization"><td class="DESC">Dead store</td><td class="DESC">Dead initialization</td><td>backend/epub/epub-document.c</td><td class="DESC">add_night_sheet</td><td class="Q">1512</td><td class="Q">1</td><td><a href="report-415495.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-415495.html" -->
+</tr>
+<tr class="bt_dead_store_dead_initialization"><td class="DESC">Dead store</td><td class="DESC">Dead initialization</td><td>backend/epub/epub-document.c</td><td class="DESC">add_night_sheet</td><td class="Q">1510</td><td class="Q">1</td><td><a href="report-0f75d7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-0f75d7.html" -->
+</tr>
+<tr class="bt_dead_store_dead_initialization"><td class="DESC">Dead store</td><td class="DESC">Dead initialization</td><td>backend/epub/epub-document.c</td><td class="DESC">add_night_sheet</td><td class="Q">1512</td><td class="Q">1</td><td><a href="report-083daf.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-083daf.html" -->
+</tr>
+<tr class="bt_dead_store_dead_initialization"><td class="DESC">Dead store</td><td class="DESC">Dead initialization</td><td>backend/epub/epub-document.c</td><td class="DESC">epub_document_get_info</td><td class="Q">1333</td><td class="Q">1</td><td><a href="report-596a10.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-596a10.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_input</td><td class="Q">933</td><td class="Q">12</td><td><a href="report-2bf073.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2bf073.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_free_input</td><td class="Q">703</td><td class="Q">12</td><td><a href="report-059ba3.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-059ba3.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_hbox</td><td class="Q">979</td><td class="Q">14</td><td><a href="report-ad85e4.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ad85e4.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">bitmap_convert_msb8</td><td class="Q">181</td><td class="Q">12</td><td><a href="report-0705db.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-0705db.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/epub/epub-document.c</td><td class="DESC">setup_document_index</td><td class="Q">1272</td><td class="Q">13</td><td><a href="report-e763af.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e763af.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_hbox</td><td class="Q">979</td><td class="Q">10</td><td><a href="report-877e8e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-877e8e.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>shell/ev-window.c</td><td class="DESC">ev_window_run_presentation</td><td class="Q">4409</td><td class="Q">15</td><td><a href="report-bda251.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-bda251.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">synctex_display_query</td><td class="Q">3459</td><td class="Q">75</td><td><a href="report-f81b88.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f81b88.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/epub/epub-document.c</td><td class="DESC">add_mathjax_script_node_to_file</td><td class="Q">1644</td><td class="Q">22</td><td><a href="report-18d7b7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-18d7b7.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>shell/ev-daemon.c</td><td class="DESC">document_loaded_cb</td><td class="Q">212</td><td class="Q">3</td><td><a href="report-a7fb7a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a7fb7a.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>libview/ev-web-view.c</td><td class="DESC">ev_web_view_change_page</td><td class="Q">173</td><td class="Q">36</td><td><a href="report-71d664.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-71d664.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_vbox</td><td class="Q">960</td><td class="Q">10</td><td><a href="report-5ab0cb.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-5ab0cb.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_free_input</td><td class="Q">703</td><td class="Q">8</td><td><a href="report-543592.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-543592.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_hbox</td><td class="Q">977</td><td class="Q">8</td><td><a href="report-d6434f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-d6434f.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_kern</td><td class="Q">1046</td><td class="Q">8</td><td><a href="report-39fb6f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-39fb6f.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/epub/epub-document.c</td><td class="DESC">setup_document_index</td><td class="Q">1272</td><td class="Q">13</td><td><a href="report-7f3ecf.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-7f3ecf.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_free_leaf</td><td class="Q">264</td><td class="Q">12</td><td><a href="report-2764da.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2764da.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_boundary</td><td class="Q">1058</td><td class="Q">8</td><td><a href="report-2a9d27.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2a9d27.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_sheet</td><td class="Q">941</td><td class="Q">12</td><td><a href="report-3eb201.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-3eb201.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_void_vbox</td><td class="Q">994</td><td class="Q">12</td><td><a href="report-a4be7f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a4be7f.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_math</td><td class="Q">1033</td><td class="Q">8</td><td><a href="report-145e18.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-145e18.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_hbox</td><td class="Q">977</td><td class="Q">8</td><td><a href="report-947173.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-947173.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">bitmap_convert_msb8</td><td class="Q">181</td><td class="Q">12</td><td><a href="report-dc67fa.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-dc67fa.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_hbox</td><td class="Q">979</td><td class="Q">14</td><td><a href="report-914417.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-914417.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_void_hbox</td><td class="Q">1009</td><td class="Q">12</td><td><a href="report-517cff.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-517cff.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_free_node</td><td class="Q">251</td><td class="Q">14</td><td><a href="report-daf866.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-daf866.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_free_node</td><td class="Q">250</td><td class="Q">8</td><td><a href="report-a2254e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a2254e.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_free_leaf</td><td class="Q">264</td><td class="Q">12</td><td><a href="report-35837c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-35837c.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_vbox</td><td class="Q">958</td><td class="Q">8</td><td><a href="report-b50758.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b50758.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">mdvi_shrink_glyph</td><td class="Q">900</td><td class="Q">29</td><td><a href="report-4324b1.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-4324b1.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_kern</td><td class="Q">1046</td><td class="Q">12</td><td><a href="report-56f132.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-56f132.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_hbox</td><td class="Q">979</td><td class="Q">10</td><td><a href="report-673cf9.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-673cf9.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_math</td><td class="Q">1033</td><td class="Q">8</td><td><a href="report-0f2bd9.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-0f2bd9.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_free_node</td><td class="Q">251</td><td class="Q">14</td><td><a href="report-849a94.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-849a94.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_void_hbox</td><td class="Q">1009</td><td class="Q">8</td><td><a href="report-e5e335.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e5e335.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_free_input</td><td class="Q">703</td><td class="Q">12</td><td><a href="report-0e58a7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-0e58a7.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_boundary</td><td class="Q">1058</td><td class="Q">12</td><td><a href="report-13b61c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-13b61c.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_input</td><td class="Q">933</td><td class="Q">8</td><td><a href="report-285ef1.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-285ef1.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">synctex_display_query</td><td class="Q">3459</td><td class="Q">75</td><td><a href="report-1c0d7a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1c0d7a.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_void_vbox</td><td class="Q">994</td><td class="Q">8</td><td><a href="report-196075.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-196075.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_vbox</td><td class="Q">958</td><td class="Q">12</td><td><a href="report-75616c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-75616c.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_free_node</td><td class="Q">250</td><td class="Q">8</td><td><a href="report-e00248.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e00248.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_math</td><td class="Q">1033</td><td class="Q">12</td><td><a href="report-21434e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-21434e.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_sheet</td><td class="Q">941</td><td class="Q">12</td><td><a href="report-5de827.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-5de827.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_sheet</td><td class="Q">943</td><td class="Q">14</td><td><a href="report-de83c8.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-de83c8.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_vbox</td><td class="Q">960</td><td class="Q">10</td><td><a href="report-2ba03d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2ba03d.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_free_node</td><td class="Q">250</td><td class="Q">12</td><td><a href="report-5d424e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-5d424e.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_hbox</td><td class="Q">977</td><td class="Q">12</td><td><a href="report-df5e6a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-df5e6a.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_vbox</td><td class="Q">958</td><td class="Q">8</td><td><a href="report-4f34fb.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-4f34fb.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/epub/epub-document.c</td><td class="DESC">add_mathjax_script_node_to_file</td><td class="Q">1644</td><td class="Q">22</td><td><a href="report-81ecfa.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-81ecfa.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_void_vbox</td><td class="Q">994</td><td class="Q">12</td><td><a href="report-61dd34.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-61dd34.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/epub/epub-document.c</td><td class="DESC">xml_parse_children_of_node</td><td class="Q">544</td><td class="Q">17</td><td><a href="report-7f71d7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-7f71d7.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_boundary</td><td class="Q">1058</td><td class="Q">12</td><td><a href="report-43a6f7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-43a6f7.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">mdvi_shrink_glyph</td><td class="Q">900</td><td class="Q">29</td><td><a href="report-2bf8af.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2bf8af.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_glue</td><td class="Q">1021</td><td class="Q">12</td><td><a href="report-547b4e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-547b4e.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_input</td><td class="Q">933</td><td class="Q">12</td><td><a href="report-a6c089.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a6c089.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_kern</td><td class="Q">1046</td><td class="Q">8</td><td><a href="report-ecbac0.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ecbac0.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_void_vbox</td><td class="Q">994</td><td class="Q">8</td><td><a href="report-101d88.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-101d88.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_free_node</td><td class="Q">251</td><td class="Q">10</td><td><a href="report-cc6ed9.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-cc6ed9.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_void_hbox</td><td class="Q">1009</td><td class="Q">8</td><td><a href="report-0c0390.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-0c0390.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_vbox</td><td class="Q">960</td><td class="Q">14</td><td><a href="report-8efdfa.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8efdfa.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_input</td><td class="Q">933</td><td class="Q">8</td><td><a href="report-f7613d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f7613d.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/dvi/mdvi-lib/tfm.c</td><td class="DESC">get_tfm_chars</td><td class="Q">112</td><td class="Q">18</td><td><a href="report-935934.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-935934.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_vbox</td><td class="Q">960</td><td class="Q">14</td><td><a href="report-2dc878.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2dc878.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_glue</td><td class="Q">1021</td><td class="Q">8</td><td><a href="report-aad2fb.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-aad2fb.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_free_leaf</td><td class="Q">264</td><td class="Q">8</td><td><a href="report-7dedd3.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-7dedd3.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>libview/ev-web-view.c</td><td class="DESC">ev_web_view_change_page</td><td class="Q">173</td><td class="Q">36</td><td><a href="report-0dc24c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-0dc24c.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_glue</td><td class="Q">1021</td><td class="Q">8</td><td><a href="report-9fcd3d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9fcd3d.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_void_hbox</td><td class="Q">1009</td><td class="Q">12</td><td><a href="report-d9c05b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-d9c05b.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/epub/epub-document.c</td><td class="DESC">xml_parse_children_of_node</td><td class="Q">544</td><td class="Q">17</td><td><a href="report-c75896.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c75896.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_free_node</td><td class="Q">251</td><td class="Q">10</td><td><a href="report-4d7ef1.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-4d7ef1.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_math</td><td class="Q">1033</td><td class="Q">12</td><td><a href="report-bbe9e1.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-bbe9e1.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_sheet</td><td class="Q">943</td><td class="Q">14</td><td><a href="report-7a6dba.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-7a6dba.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_free_node</td><td class="Q">250</td><td class="Q">12</td><td><a href="report-f623a0.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f623a0.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_sheet</td><td class="Q">943</td><td class="Q">10</td><td><a href="report-016ac0.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-016ac0.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_glue</td><td class="Q">1021</td><td class="Q">12</td><td><a href="report-70b8e3.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-70b8e3.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_hbox</td><td class="Q">977</td><td class="Q">12</td><td><a href="report-9c2d02.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9c2d02.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_free_input</td><td class="Q">703</td><td class="Q">8</td><td><a href="report-86f26e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-86f26e.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_kern</td><td class="Q">1046</td><td class="Q">12</td><td><a href="report-a09738.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a09738.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>libview/ev-pixbuf-cache.c</td><td class="DESC">add_job_if_needed</td><td class="Q">711</td><td class="Q">75</td><td><a href="report-1a001a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1a001a.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_sheet</td><td class="Q">941</td><td class="Q">8</td><td><a href="report-6ba164.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-6ba164.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>libview/ev-pixbuf-cache.c</td><td class="DESC">add_job_if_needed</td><td class="Q">711</td><td class="Q">75</td><td><a href="report-ed7a56.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ed7a56.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_vbox</td><td class="Q">958</td><td class="Q">12</td><td><a href="report-08586d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-08586d.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>backend/dvi/mdvi-lib/tfm.c</td><td class="DESC">get_tfm_chars</td><td class="Q">112</td><td class="Q">18</td><td><a href="report-c56b59.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c56b59.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_sheet</td><td class="Q">941</td><td class="Q">8</td><td><a href="report-3d7d8a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-3d7d8a.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_free_leaf</td><td class="Q">264</td><td class="Q">8</td><td><a href="report-290577.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-290577.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_boundary</td><td class="Q">1058</td><td class="Q">8</td><td><a href="report-f8663b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f8663b.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_display_sheet</td><td class="Q">943</td><td class="Q">10</td><td><a href="report-b250af.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b250af.html" -->
+</tr>
+<tr class="bt_logic_error_identical_conditions"><td class="DESC">Logic error</td><td class="DESC">Identical conditions</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_scan_float_and_dimension</td><td class="Q">1704</td><td class="Q">1</td><td><a href="report-0af971.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-0af971.html" -->
+</tr>
+<tr class="bt_logic_error_identical_conditions"><td class="DESC">Logic error</td><td class="DESC">Identical conditions</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_scan_float_and_dimension</td><td class="Q">1696</td><td class="Q">1</td><td><a href="report-0ab051.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-0ab051.html" -->
+</tr>
+<tr class="bt_logic_error_identical_conditions"><td class="DESC">Logic error</td><td class="DESC">Identical conditions</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_scan_float_and_dimension</td><td class="Q">1728</td><td class="Q">1</td><td><a href="report-bebe7d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-bebe7d.html" -->
+</tr>
+<tr class="bt_logic_error_identical_conditions"><td class="DESC">Logic error</td><td class="DESC">Identical conditions</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_scan_float_and_dimension</td><td class="Q">1724</td><td class="Q">1</td><td><a href="report-fc6b0e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-fc6b0e.html" -->
+</tr>
+<tr class="bt_logic_error_identical_conditions"><td class="DESC">Logic error</td><td class="DESC">Identical conditions</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_scan_float_and_dimension</td><td class="Q">1696</td><td class="Q">1</td><td><a href="report-f2daca.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f2daca.html" -->
+</tr>
+<tr class="bt_logic_error_identical_conditions"><td class="DESC">Logic error</td><td class="DESC">Identical conditions</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_scan_float_and_dimension</td><td class="Q">1724</td><td class="Q">1</td><td><a href="report-b73a0a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b73a0a.html" -->
+</tr>
+<tr class="bt_logic_error_identical_conditions"><td class="DESC">Logic error</td><td class="DESC">Identical conditions</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_scan_float_and_dimension</td><td class="Q">1712</td><td class="Q">1</td><td><a href="report-7ca5f1.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-7ca5f1.html" -->
+</tr>
+<tr class="bt_logic_error_identical_conditions"><td class="DESC">Logic error</td><td class="DESC">Identical conditions</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_scan_float_and_dimension</td><td class="Q">1700</td><td class="Q">1</td><td><a href="report-b20a33.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b20a33.html" -->
+</tr>
+<tr class="bt_logic_error_identical_conditions"><td class="DESC">Logic error</td><td class="DESC">Identical conditions</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_scan_float_and_dimension</td><td class="Q">1716</td><td class="Q">1</td><td><a href="report-4f12ae.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-4f12ae.html" -->
+</tr>
+<tr class="bt_logic_error_identical_conditions"><td class="DESC">Logic error</td><td class="DESC">Identical conditions</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_scan_float_and_dimension</td><td class="Q">1712</td><td class="Q">1</td><td><a href="report-02c30f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-02c30f.html" -->
+</tr>
+<tr class="bt_logic_error_identical_conditions"><td class="DESC">Logic error</td><td class="DESC">Identical conditions</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_scan_float_and_dimension</td><td class="Q">1704</td><td class="Q">1</td><td><a href="report-d2c38f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-d2c38f.html" -->
+</tr>
+<tr class="bt_logic_error_identical_conditions"><td class="DESC">Logic error</td><td class="DESC">Identical conditions</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_scan_float_and_dimension</td><td class="Q">1728</td><td class="Q">1</td><td><a href="report-b130c1.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b130c1.html" -->
+</tr>
+<tr class="bt_logic_error_identical_conditions"><td class="DESC">Logic error</td><td class="DESC">Identical conditions</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_scan_float_and_dimension</td><td class="Q">1720</td><td class="Q">1</td><td><a href="report-c50cf3.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c50cf3.html" -->
+</tr>
+<tr class="bt_logic_error_identical_conditions"><td class="DESC">Logic error</td><td class="DESC">Identical conditions</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_scan_float_and_dimension</td><td class="Q">1700</td><td class="Q">1</td><td><a href="report-f02875.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f02875.html" -->
+</tr>
+<tr class="bt_logic_error_identical_conditions"><td class="DESC">Logic error</td><td class="DESC">Identical conditions</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_scan_float_and_dimension</td><td class="Q">1720</td><td class="Q">1</td><td><a href="report-4e1669.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-4e1669.html" -->
+</tr>
+<tr class="bt_logic_error_identical_conditions"><td class="DESC">Logic error</td><td class="DESC">Identical conditions</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_scan_float_and_dimension</td><td class="Q">1708</td><td class="Q">1</td><td><a href="report-085be6.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-085be6.html" -->
+</tr>
+<tr class="bt_logic_error_identical_conditions"><td class="DESC">Logic error</td><td class="DESC">Identical conditions</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_scan_float_and_dimension</td><td class="Q">1708</td><td class="Q">1</td><td><a href="report-ec3822.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ec3822.html" -->
+</tr>
+<tr class="bt_logic_error_identical_conditions"><td class="DESC">Logic error</td><td class="DESC">Identical conditions</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_scan_float_and_dimension</td><td class="Q">1716</td><td class="Q">1</td><td><a href="report-7fc2f1.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-7fc2f1.html" -->
+</tr>
+<tr class="bt_memory_error_memory_leak"><td class="DESC">Memory error</td><td class="DESC">Memory leak</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">mdvi_build_path_from_cwd</td><td class="Q">339</td><td class="Q">10</td><td><a href="report-c262df.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c262df.html" -->
+</tr>
+<tr class="bt_memory_error_memory_leak"><td class="DESC">Memory error</td><td class="DESC">Memory leak</td><td>cut-n-paste/synctex/synctex_parser_utils.c</td><td class="DESC">_synctex_get_name</td><td class="Q">424</td><td class="Q">18</td><td><a href="report-b5856c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b5856c.html" -->
+</tr>
+<tr class="bt_memory_error_memory_leak"><td class="DESC">Memory error</td><td class="DESC">Memory leak</td><td>cut-n-paste/synctex/synctex_parser_utils.c</td><td class="DESC">_synctex_get_name</td><td class="Q">424</td><td class="Q">18</td><td><a href="report-4fddac.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-4fddac.html" -->
+</tr>
+<tr class="bt_memory_error_memory_leak"><td class="DESC">Memory error</td><td class="DESC">Memory leak</td><td>backend/epub/epub-document.c</td><td class="DESC">get_child_list</td><td class="Q">1192</td><td class="Q">23</td><td><a href="report-84d1bb.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-84d1bb.html" -->
+</tr>
+<tr class="bt_memory_error_memory_leak"><td class="DESC">Memory error</td><td class="DESC">Memory leak</td><td>backend/epub/epub-document.c</td><td class="DESC">get_child_list</td><td class="Q">1192</td><td class="Q">23</td><td><a href="report-b3080d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b3080d.html" -->
+</tr>
+<tr class="bt_memory_error_memory_leak"><td class="DESC">Memory error</td><td class="DESC">Memory leak</td><td>cut-n-paste/synctex/synctex_parser_utils.c</td><td class="DESC">_synctex_get_name</td><td class="Q">424</td><td class="Q">18</td><td><a href="report-9c762b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9c762b.html" -->
+</tr>
+<tr class="bt_memory_error_memory_leak"><td class="DESC">Memory error</td><td class="DESC">Memory leak</td><td>cut-n-paste/synctex/synctex_parser_utils.c</td><td class="DESC">_synctex_get_name</td><td class="Q">424</td><td class="Q">18</td><td><a href="report-316f99.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-316f99.html" -->
+</tr>
+<tr class="bt_memory_error_memory_leak"><td class="DESC">Memory error</td><td class="DESC">Memory leak</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">mdvi_build_path_from_cwd</td><td class="Q">339</td><td class="Q">10</td><td><a href="report-1ee0f0.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1ee0f0.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm_load_file</td><td class="Q">526</td><td class="Q">31</td><td><a href="report-58f725.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-58f725.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">mdvi_shrink_glyph_grey</td><td class="Q">1012</td><td class="Q">28</td><td><a href="report-18a672.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-18a672.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_decode_string</td><td class="Q">1488</td><td class="Q">31</td><td><a href="report-fa3e31.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-fa3e31.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/dviread.c</td><td class="DESC">mdvi_dopage</td><td class="Q">1091</td><td class="Q">16</td><td><a href="report-29e58e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-29e58e.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>libview/ev-view.c</td><td class="DESC">ev_view_build_height_to_page_cache</td><td class="Q">379</td><td class="Q">57</td><td><a href="report-6b0fed.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-6b0fed.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/dviread.c</td><td class="DESC">mdvi_run_macro</td><td class="Q">981</td><td class="Q">14</td><td><a href="report-501b97.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-501b97.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">do_sample</td><td class="Q">783</td><td class="Q">35</td><td><a href="report-371c6a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-371c6a.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/dviread.c</td><td class="DESC">mdvi_run_macro</td><td class="Q">981</td><td class="Q">14</td><td><a href="report-423339.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-423339.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">tfm_load_file</td><td class="Q">247</td><td class="Q">35</td><td><a href="report-0c3763.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-0c3763.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm_load_file</td><td class="Q">526</td><td class="Q">31</td><td><a href="report-9a7135.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9a7135.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_decode_string</td><td class="Q">1488</td><td class="Q">31</td><td><a href="report-e4d272.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e4d272.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">do_sample</td><td class="Q">783</td><td class="Q">35</td><td><a href="report-9fccef.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9fccef.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/epub/epub-document.c</td><td class="DESC">in_tag</td><td class="Q">144</td><td class="Q">9</td><td><a href="report-794299.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-794299.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/epub/epub-document.c</td><td class="DESC">in_tag</td><td class="Q">144</td><td class="Q">9</td><td><a href="report-387db7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-387db7.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm1_load_file</td><td class="Q">349</td><td class="Q">26</td><td><a href="report-e78ecc.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e78ecc.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>libview/ev-view.c</td><td class="DESC">ev_view_build_height_to_page_cache</td><td class="Q">379</td><td class="Q">57</td><td><a href="report-768431.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-768431.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">ofm1_load_file</td><td class="Q">349</td><td class="Q">26</td><td><a href="report-37def3.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-37def3.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">mdvi_shrink_glyph_grey</td><td class="Q">1012</td><td class="Q">28</td><td><a href="report-b333e3.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b333e3.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/tfmfile.c</td><td class="DESC">tfm_load_file</td><td class="Q">247</td><td class="Q">35</td><td><a href="report-1f6327.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1f6327.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>backend/dvi/mdvi-lib/dviread.c</td><td class="DESC">mdvi_dopage</td><td class="Q">1091</td><td class="Q">16</td><td><a href="report-2635e3.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2635e3.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcat_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcat'</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">mdvi_build_path_from_cwd</td><td class="Q">340</td><td class="Q">1</td><td><a href="report-781e20.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-781e20.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcat_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcat'</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">__synctex_open</td><td class="Q">2785</td><td class="Q">1</td><td><a href="report-a4f91f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a4f91f.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcat_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcat'</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_open</td><td class="Q">2876</td><td class="Q">1</td><td><a href="report-c406f6.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c406f6.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcat_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcat'</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_open</td><td class="Q">2870</td><td class="Q">1</td><td><a href="report-cce67c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-cce67c.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcat_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcat'</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">__synctex_open</td><td class="Q">2761</td><td class="Q">1</td><td><a href="report-b78e18.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b78e18.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcat_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcat'</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">__synctex_open</td><td class="Q">2761</td><td class="Q">1</td><td><a href="report-e8a43a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e8a43a.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcat_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcat'</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">__synctex_open</td><td class="Q">2778</td><td class="Q">1</td><td><a href="report-bc6b80.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-bc6b80.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcat_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcat'</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">__synctex_open</td><td class="Q">2785</td><td class="Q">1</td><td><a href="report-893485.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-893485.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcat_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcat'</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_open</td><td class="Q">2867</td><td class="Q">1</td><td><a href="report-c50431.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c50431.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcat_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcat'</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">__synctex_open</td><td class="Q">2766</td><td class="Q">1</td><td><a href="report-8d9bd6.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8d9bd6.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcat_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcat'</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">__synctex_open</td><td class="Q">2778</td><td class="Q">1</td><td><a href="report-d4ab63.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-d4ab63.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcat_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcat'</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_open</td><td class="Q">2870</td><td class="Q">1</td><td><a href="report-2deabb.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2deabb.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcat_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcat'</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">__synctex_open</td><td class="Q">2766</td><td class="Q">1</td><td><a href="report-3e8ecf.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-3e8ecf.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcat_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcat'</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_open</td><td class="Q">2876</td><td class="Q">1</td><td><a href="report-a67010.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a67010.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcat_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcat'</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_open</td><td class="Q">2867</td><td class="Q">1</td><td><a href="report-e5c8a0.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e5c8a0.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcat_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcat'</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">mdvi_build_path_from_cwd</td><td class="Q">340</td><td class="Q">1</td><td><a href="report-e4ef18.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e4ef18.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">synctex_scanner_new_with_output_file</td><td class="Q">2706</td><td class="Q">1</td><td><a href="report-befd09.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-befd09.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">__synctex_open</td><td class="Q">2738</td><td class="Q">1</td><td><a href="report-06a2c1.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-06a2c1.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td>backend/dvi/mdvi-lib/fontmap.c</td><td class="DESC">mdvi_ps_get_metrics</td><td class="Q">1124</td><td class="Q">1</td><td><a href="report-43e605.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-43e605.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td>backend/dvi/mdvi-lib/dviread.c</td><td class="DESC">opendvi</td><td class="Q">453</td><td class="Q">1</td><td><a href="report-609ef9.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-609ef9.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_open</td><td class="Q">2861</td><td class="Q">1</td><td><a href="report-08cba8.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-08cba8.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td>backend/dvi/mdvi-lib/fontmap.c</td><td class="DESC">mdvi_ps_get_metrics</td><td class="Q">1124</td><td class="Q">1</td><td><a href="report-324565.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-324565.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td>backend/dvi/mdvi-lib/dviread.c</td><td class="DESC">opendvi</td><td class="Q">454</td><td class="Q">1</td><td><a href="report-8f875f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8f875f.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_open</td><td class="Q">2861</td><td class="Q">1</td><td><a href="report-2cc074.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2cc074.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td>backend/dvi/mdvi-lib/dviread.c</td><td class="DESC">opendvi</td><td class="Q">453</td><td class="Q">1</td><td><a href="report-37b368.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-37b368.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">synctex_scanner_new_with_output_file</td><td class="Q">2706</td><td class="Q">1</td><td><a href="report-30cf2c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-30cf2c.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">__synctex_open</td><td class="Q">2738</td><td class="Q">1</td><td><a href="report-bceb8d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-bceb8d.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td>backend/dvi/mdvi-lib/dviread.c</td><td class="DESC">opendvi</td><td class="Q">454</td><td class="Q">1</td><td><a href="report-b4fca3.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b4fca3.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td>backend/dvi/mdvi-lib/fontmap.c</td><td class="DESC">mdvi_ps_get_metrics</td><td class="Q">1125</td><td class="Q">1</td><td><a href="report-d7337b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-d7337b.html" -->
+</tr>
+<tr class="bt_security_potential_insecure_memory_buffer_bounds_restriction_in_call_strcpy_"><td class="DESC">Security</td><td class="DESC">Potential insecure memory buffer bounds restriction in call 'strcpy'</td><td>backend/dvi/mdvi-lib/fontmap.c</td><td class="DESC">mdvi_ps_get_metrics</td><td class="Q">1125</td><td class="Q">1</td><td><a href="report-c90a98.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c90a98.html" -->
+</tr>
+<tr class="bt_logic_error_potential_unintended_use_of_sizeof_on_pointer_type"><td class="DESC">Logic error</td><td class="DESC">Potential unintended use of sizeof() on pointer type</td><td>backend/epub/epub-document.c</td><td class="DESC">setup_document_content_list</td><td class="Q">1024</td><td class="Q">1</td><td><a href="report-3abfdd.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-3abfdd.html" -->
+</tr>
+<tr class="bt_logic_error_potential_unintended_use_of_sizeof_on_pointer_type"><td class="DESC">Logic error</td><td class="DESC">Potential unintended use of sizeof() on pointer type</td><td>backend/epub/epub-document.c</td><td class="DESC">setup_document_content_list</td><td class="Q">1024</td><td class="Q">1</td><td><a href="report-164554.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-164554.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/dvi/dvi-document.c</td><td class="DESC">dvi_document_do_color_special</td><td class="Q">511</td><td class="Q">13</td><td><a href="report-724bb3.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-724bb3.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/dvi/dvi-document.c</td><td class="DESC">dvi_document_do_color_special</td><td class="Q">511</td><td class="Q">13</td><td><a href="report-baf1ac.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-baf1ac.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/comics/comics-document.c</td><td class="DESC">comics_document_thumbnails_get_dimensions</td><td class="Q">963</td><td class="Q">10</td><td><a href="report-6d7ee6.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-6d7ee6.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/comics/comics-document.c</td><td class="DESC">comics_document_thumbnails_get_dimensions</td><td class="Q">966</td><td class="Q">12</td><td><a href="report-fad895.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-fad895.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/tiff/tiff-document.c</td><td class="DESC">tiff_document_thumbnails_get_dimensions</td><td class="Q">473</td><td class="Q">19</td><td><a href="report-78f640.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-78f640.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/tiff/tiff-document.c</td><td class="DESC">tiff_document_thumbnails_get_dimensions</td><td class="Q">470</td><td class="Q">17</td><td><a href="report-376e6a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-376e6a.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/comics/comics-document.c</td><td class="DESC">comics_document_thumbnails_get_dimensions</td><td class="Q">963</td><td class="Q">10</td><td><a href="report-d7ee71.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-d7ee71.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/tiff/tiff-document.c</td><td class="DESC">tiff_document_thumbnails_get_dimensions</td><td class="Q">470</td><td class="Q">17</td><td><a href="report-8523ec.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8523ec.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/tiff/tiff-document.c</td><td class="DESC">tiff_document_thumbnails_get_dimensions</td><td class="Q">473</td><td class="Q">19</td><td><a href="report-fc90b8.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-fc90b8.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/dvi/dvi-document.c</td><td class="DESC">dvi_document_do_color_special</td><td class="Q">512</td><td class="Q">18</td><td><a href="report-d588f3.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-d588f3.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/dvi/dvi-document.c</td><td class="DESC">dvi_document_do_color_special</td><td class="Q">530</td><td class="Q">17</td><td><a href="report-9ec120.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9ec120.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/comics/comics-document.c</td><td class="DESC">comics_document_thumbnails_get_dimensions</td><td class="Q">966</td><td class="Q">12</td><td><a href="report-3be76b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-3be76b.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/dvi/dvi-document.c</td><td class="DESC">dvi_document_do_color_special</td><td class="Q">530</td><td class="Q">17</td><td><a href="report-d0d3ff.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-d0d3ff.html" -->
+</tr>
+<tr class="bt_logic_error_result_of_operation_is_garbage_or_undefined"><td class="DESC">Logic error</td><td class="DESC">Result of operation is garbage or undefined</td><td>backend/dvi/dvi-document.c</td><td class="DESC">dvi_document_do_color_special</td><td class="Q">512</td><td class="Q">18</td><td><a href="report-2a1ed2.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2a1ed2.html" -->
+</tr>
+<tr class="bt_logic_error_return_of_pointer_value_outside_of_expected_range"><td class="DESC">Logic error</td><td class="DESC">Return of pointer value outside of expected range</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_implementation_1</td><td class="Q">349</td><td class="Q">3</td><td><a href="report-2c04fa.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2c04fa.html" -->
+</tr>
+<tr class="bt_logic_error_return_of_pointer_value_outside_of_expected_range"><td class="DESC">Logic error</td><td class="DESC">Return of pointer value outside of expected range</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_implementation_2</td><td class="Q">350</td><td class="Q">3</td><td><a href="report-538c17.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-538c17.html" -->
+</tr>
+<tr class="bt_logic_error_return_of_pointer_value_outside_of_expected_range"><td class="DESC">Logic error</td><td class="DESC">Return of pointer value outside of expected range</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_implementation_3</td><td class="Q">351</td><td class="Q">3</td><td><a href="report-df2c78.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-df2c78.html" -->
+</tr>
+<tr class="bt_logic_error_return_of_pointer_value_outside_of_expected_range"><td class="DESC">Logic error</td><td class="DESC">Return of pointer value outside of expected range</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_implementation_2</td><td class="Q">350</td><td class="Q">3</td><td><a href="report-eba5a7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-eba5a7.html" -->
+</tr>
+<tr class="bt_logic_error_return_of_pointer_value_outside_of_expected_range"><td class="DESC">Logic error</td><td class="DESC">Return of pointer value outside of expected range</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_implementation_4</td><td class="Q">352</td><td class="Q">3</td><td><a href="report-3f61c3.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-3f61c3.html" -->
+</tr>
+<tr class="bt_logic_error_return_of_pointer_value_outside_of_expected_range"><td class="DESC">Logic error</td><td class="DESC">Return of pointer value outside of expected range</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_implementation_1</td><td class="Q">349</td><td class="Q">3</td><td><a href="report-cca0fe.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-cca0fe.html" -->
+</tr>
+<tr class="bt_logic_error_return_of_pointer_value_outside_of_expected_range"><td class="DESC">Logic error</td><td class="DESC">Return of pointer value outside of expected range</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_implementation_4</td><td class="Q">352</td><td class="Q">3</td><td><a href="report-ceec35.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ceec35.html" -->
+</tr>
+<tr class="bt_logic_error_return_of_pointer_value_outside_of_expected_range"><td class="DESC">Logic error</td><td class="DESC">Return of pointer value outside of expected range</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_implementation_5</td><td class="Q">353</td><td class="Q">3</td><td><a href="report-5eab27.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-5eab27.html" -->
+</tr>
+<tr class="bt_logic_error_return_of_pointer_value_outside_of_expected_range"><td class="DESC">Logic error</td><td class="DESC">Return of pointer value outside of expected range</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_implementation_5</td><td class="Q">353</td><td class="Q">3</td><td><a href="report-37bba2.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-37bba2.html" -->
+</tr>
+<tr class="bt_logic_error_return_of_pointer_value_outside_of_expected_range"><td class="DESC">Logic error</td><td class="DESC">Return of pointer value outside of expected range</td><td>cut-n-paste/synctex/synctex_parser.c</td><td class="DESC">_synctex_implementation_3</td><td class="Q">351</td><td class="Q">3</td><td><a href="report-e2b7c4.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e2b7c4.html" -->
+</tr>
+<tr class="bt_logic_error_uninitialized_argument_value"><td class="DESC">Logic error</td><td class="DESC">Uninitialized argument value</td><td>backend/dvi/dvi-document.c</td><td class="DESC">dvi_document_do_color_special</td><td class="Q">521</td><td class="Q">15</td><td><a href="report-504600.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-504600.html" -->
+</tr>
+<tr class="bt_logic_error_uninitialized_argument_value"><td class="DESC">Logic error</td><td class="DESC">Uninitialized argument value</td><td>backend/dvi/dvi-document.c</td><td class="DESC">dvi_document_do_color_special</td><td class="Q">521</td><td class="Q">20</td><td><a href="report-fb7365.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-fb7365.html" -->
+</tr>
+<tr class="bt_logic_error_uninitialized_argument_value"><td class="DESC">Logic error</td><td class="DESC">Uninitialized argument value</td><td>backend/dvi/dvi-document.c</td><td class="DESC">dvi_document_do_color_special</td><td class="Q">521</td><td class="Q">15</td><td><a href="report-97a811.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-97a811.html" -->
+</tr>
+<tr class="bt_logic_error_uninitialized_argument_value"><td class="DESC">Logic error</td><td class="DESC">Uninitialized argument value</td><td>backend/dvi/dvi-document.c</td><td class="DESC">dvi_document_do_color_special</td><td class="Q">521</td><td class="Q">20</td><td><a href="report-66ad3f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-66ad3f.html" -->
+</tr>
+<tr class="bt_logic_error_use_fixed_address"><td class="DESC">Logic error</td><td class="DESC">Use fixed address</td><td>backend/dvi/mdvi-lib/tfm.c</td><td class="DESC">tfm_font_get_glyph</td><td class="Q">211</td><td class="Q">7</td><td><a href="report-557303.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-557303.html" -->
+</tr>
+<tr class="bt_logic_error_use_fixed_address"><td class="DESC">Logic error</td><td class="DESC">Use fixed address</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">mdvi_shrink_box</td><td class="Q">826</td><td class="Q">5</td><td><a href="report-9619ce.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9619ce.html" -->
+</tr>
+<tr class="bt_logic_error_use_fixed_address"><td class="DESC">Logic error</td><td class="DESC">Use fixed address</td><td>backend/dvi/mdvi-lib/font.c</td><td class="DESC">font_transform_glyph</td><td class="Q">214</td><td class="Q">26</td><td><a href="report-3a693a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-3a693a.html" -->
+</tr>
+<tr class="bt_logic_error_use_fixed_address"><td class="DESC">Logic error</td><td class="DESC">Use fixed address</td><td>backend/dvi/mdvi-lib/tfm.c</td><td class="DESC">tfm_font_get_glyph</td><td class="Q">211</td><td class="Q">7</td><td><a href="report-45344c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-45344c.html" -->
+</tr>
+<tr class="bt_logic_error_use_fixed_address"><td class="DESC">Logic error</td><td class="DESC">Use fixed address</td><td>backend/dvi/mdvi-lib/font.c</td><td class="DESC">font_transform_glyph</td><td class="Q">214</td><td class="Q">26</td><td><a href="report-af3a88.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-af3a88.html" -->
+</tr>
+<tr class="bt_logic_error_use_fixed_address"><td class="DESC">Logic error</td><td class="DESC">Use fixed address</td><td>backend/dvi/mdvi-lib/bitmap.c</td><td class="DESC">mdvi_shrink_box</td><td class="Q">826</td><td class="Q">5</td><td><a href="report-1bc73b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1bc73b.html" -->
+</tr>
+<tr class="bt_memory_error_use_of_zero_allocated"><td class="DESC">Memory error</td><td class="DESC">Use of zero allocated</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">xstradd</td><td class="Q">414</td><td class="Q">11</td><td><a href="report-b06061.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b06061.html" -->
+</tr>
+<tr class="bt_memory_error_use_of_zero_allocated"><td class="DESC">Memory error</td><td class="DESC">Use of zero allocated</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">dstring_insert</td><td class="Q">526</td><td class="Q">18</td><td><a href="report-ab694e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ab694e.html" -->
+</tr>
+<tr class="bt_memory_error_use_of_zero_allocated"><td class="DESC">Memory error</td><td class="DESC">Use of zero allocated</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">dstring_append</td><td class="Q">483</td><td class="Q">19</td><td><a href="report-824e41.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-824e41.html" -->
+</tr>
+<tr class="bt_memory_error_use_of_zero_allocated"><td class="DESC">Memory error</td><td class="DESC">Use of zero allocated</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">dstring_append</td><td class="Q">483</td><td class="Q">19</td><td><a href="report-b96995.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b96995.html" -->
+</tr>
+<tr class="bt_memory_error_use_of_zero_allocated"><td class="DESC">Memory error</td><td class="DESC">Use of zero allocated</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">xstradd</td><td class="Q">414</td><td class="Q">11</td><td><a href="report-2f5f88.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2f5f88.html" -->
+</tr>
+<tr class="bt_memory_error_use_of_zero_allocated"><td class="DESC">Memory error</td><td class="DESC">Use of zero allocated</td><td>backend/dvi/mdvi-lib/util.c</td><td class="DESC">dstring_insert</td><td class="Q">526</td><td class="Q">18</td><td><a href="report-d407f8.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-d407f8.html" -->
+</tr>
+</tbody>
+</table>
+
+</body></html>
